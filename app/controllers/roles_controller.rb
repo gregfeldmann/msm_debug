@@ -5,6 +5,7 @@ class RolesController < ApplicationController
 
   def show
     @role = Role.find(params[:id])
+    @role.save
   end
 
   def new_form
@@ -13,8 +14,8 @@ class RolesController < ApplicationController
   def create_row
     @role = Role.new
     @role.character_name = params[:character_name]
-    @role.movie_id = params[:movie_id]
-    @role.actor_id = params[:actor_id]
+   # @role.movie_id = params[:movie_id]
+    # @role.actor_id = params[:actor_id]
 
     @role.save
 
@@ -41,5 +42,7 @@ class RolesController < ApplicationController
     @role = Role.find(params[:id])
 
     @role.destroy
+    
+    redirect_to("/roles")
   end
 end
