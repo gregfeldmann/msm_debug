@@ -5,6 +5,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
+    @movie.save
   end
 
   def new_form
@@ -14,12 +15,12 @@ class MoviesController < ApplicationController
     
     @movie=Movie.new
     
-    @movie.title = params[:the_title]
-    @movie.year = params[:the_year]
-    @movie.duration = params[:the_duration]
-    @movie.description = params[:the_description]
-    @movie.image_url = params[:the_image_url]
-    @movie.director_id = params[:the_director_id]
+    @movie.title = params["title"]
+    @movie.year = params["year"]
+    @movie.duration = params["duration"]
+    @movie.description = params["description"]
+    @movie.image_url = params["image_url"]
+   # @movie.director_id = params["director_id"]
 
     @movie.save
 
@@ -40,7 +41,8 @@ class MoviesController < ApplicationController
     @movie.image_url = params[:image_url]
     @movie.director_id = params[:director_id]
 
-    redirect_to("/movies")
+    @movie.save
+    # redirect_to("/movies")
 
     render("show")
   end
